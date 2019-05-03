@@ -25,10 +25,11 @@ def get_pig_latin(url):
 @app.route('/')
 def home():
     phrase = get_fact().strip()
-    data = {'input_text': phrase,}
+    punctuation = phrase[-1:]
+    data = {'input_text': phrase[:-1],}
     response = requests.post(url="https://hidden-journey-62459.herokuapp.com/piglatinize/", data=data)
     pig_response = get_pig_latin(response.url)
-    return pig_response
+    return pig_response + punctuation
 
 
 if __name__ == "__main__":
